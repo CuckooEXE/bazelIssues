@@ -30,7 +30,6 @@ aggregate_txt(
     ],
 )
 
-# Example of select working where I can choose one OR all files
 # Run `bazel build //example:ConditionalAggregate --//example:FilesToInclude=FileB` for example
 aggregate_txt(
     name = "ConditionalAggregate",
