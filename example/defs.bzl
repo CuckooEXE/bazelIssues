@@ -15,3 +15,25 @@ aggregate_txt = rule(
         "srcs": attr.label_list(allow_files = [".txt"]),
     },
 )
+
+all_possible_files = {
+    "FileA": "FileA",
+    "FileB": "FileB",
+    "FileC": "FileC",
+}
+
+def generate_selects():
+    selects = []
+    for name, target in all_possible_files.items():
+        native.config_setting(
+            name = "{}Included".format(name),
+            flag_values = {
+                ":FilesToInclude": target,
+            },
+        )
+        selects += select({
+            ":{}Included".format(name): [target],
+            "//conditions:default": [],
+        })
+
+    return selects
