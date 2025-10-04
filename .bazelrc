@@ -1,0 +1,4 @@
+# Disable Bazel output for `pre-commit` hooks
+common:pre-commit --ui_event_filters=-info,-stdout,-stderr
+common:pre-commit --noshow_progress
+common:pre-commit --lockfile_mode=off
